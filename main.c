@@ -550,18 +550,14 @@ int main(void)
 {
     app_context_t app;
     app_init(&app);
-
     printf("Starting Embedded Firmware Demo (%u ms simulation)...\n",
            DEMO_SIMULATION_TICKS);
-
     for (uint32_t t = 0U; t <= DEMO_SIMULATION_TICKS; t++) {
         app.tick_ms = t;
         scheduler_tick(&app.sched, app.tick_ms);
     }
-
     printf("Simulation complete. Final state: %s, WD kicks: %lu\n",
            sys_state_name(app.sys.state),
            (unsigned long)app.sys.wdg.kick_count);
-
     return EXIT_SUCCESS;
 }
